@@ -293,6 +293,14 @@ public class MultiSessionTelegramBot extends TelegramLongPollingBot {
             throw new RuntimeException("Can't load message!");
         }
     }
+    public static String loadToken(String name) {
+        try {
+            var is = ClassLoader.getSystemResourceAsStream("tokens/" + name + ".txt");
+            return new String(is.readAllBytes());
+        } catch (IOException e) {
+            throw new RuntimeException("Can't load message!");
+        }
+    }
 
     public static InputStream loadImage(String name) {
         try {

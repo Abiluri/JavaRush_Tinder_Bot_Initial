@@ -36,3 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/src/main/resources/tokens/telegram
+/src/main/resources/tokens/openAI

@@ -9,12 +9,14 @@ import org.telegram.telegrambots.meta.api.objects.*;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class TinderBoltApp extends MultiSessionTelegramBot {
     public static final String TELEGRAM_BOT_NAME = "Chat_GPT_JR_bot";
-    public static final String TELEGRAM_BOT_TOKEN = "7123505158:AAEVGgv3wMYfEl9TZcDziNEJ1ijspLhcXTE";
-    public static final String OPEN_AI_TOKEN = "gpt:5CzLztwRvTEsFIlxnYS9JFkblB3TaH7Nx79xXZm0KWsbqcJv";
+    public static final String TELEGRAM_BOT_TOKEN = loadToken("telegram");
+    public static final String OPEN_AI_TOKEN = loadToken("openAI");
 
     private ChatGPTService chatGPT = new ChatGPTService(OPEN_AI_TOKEN);
     private DialogMode currentMode = null;
@@ -31,8 +33,8 @@ public class TinderBoltApp extends MultiSessionTelegramBot {
     @Override
     public void onUpdateEventReceived(Update update) {
         String message = getMessageText();
-
         if (message.equals("/start")) {
+
             currentMode = DialogMode.MAIN;
             sendPhotoMessage("main");
             String text = loadMessage("main");
